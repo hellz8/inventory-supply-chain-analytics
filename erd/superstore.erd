@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="superstore-ERD.erd">
+	<entities>
+		<data-source id="postgres-jdbc-19dc5d88604-17bb6aa40ce63959">
+			<entity id="1" name="dim_customer" fq-name="public.dim_customer" order="0" x="39" y="394">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="2" name="dim_date" fq-name="public.dim_date" order="1" x="385" y="33">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="3" name="dim_product" fq-name="public.dim_product" order="2" x="361" y="328">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="4" name="dim_supplier" fq-name="public.dim_supplier" order="3" x="770" y="432">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="5" name="fact_inventory_snapshot" fq-name="public.fact_inventory_snapshot" order="4" x="557" y="78">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="6" name="fact_purchase" fq-name="public.fact_purchase" order="5" x="593" y="339">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="7" name="fact_receipt" fq-name="public.fact_receipt" order="6" x="544" y="616">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+			<entity id="8" name="fact_sales" fq-name="public.fact_sales" order="7" x="192" y="229">
+				<path name="public"/>
+				<path name="sales_superstore"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="fk_fact_sales_customer" fq-name="public.fact_sales.fk_fact_sales_customer" type="fk" pk-ref="1" fk-ref="8"/>
+		<relation name="fk_fact_inventory_snapshot_date" fq-name="public.fact_inventory_snapshot.fk_fact_inventory_snapshot_date" type="fk" pk-ref="2" fk-ref="5"/>
+		<relation name="fk_receipt_date_key" fq-name="public.fact_receipt.fk_receipt_date_key" type="fk" pk-ref="2" fk-ref="7"/>
+		<relation name="fk_sales_order_date_key" fq-name="public.fact_sales.fk_sales_order_date_key" type="fk" pk-ref="2" fk-ref="8"/>
+		<relation name="fk_sales_ship_date_key" fq-name="public.fact_sales.fk_sales_ship_date_key" type="fk" pk-ref="2" fk-ref="8"/>
+		<relation name="fk_fact_inventory_snapshot_product" fq-name="public.fact_inventory_snapshot.fk_fact_inventory_snapshot_product" type="fk" pk-ref="3" fk-ref="5"/>
+		<relation name="fk_fact_purchase_product" fq-name="public.fact_purchase.fk_fact_purchase_product" type="fk" pk-ref="3" fk-ref="6"/>
+		<relation name="fk_fact_receipt_product" fq-name="public.fact_receipt.fk_fact_receipt_product" type="fk" pk-ref="3" fk-ref="7"/>
+		<relation name="fk_fact_sales_product" fq-name="public.fact_sales.fk_fact_sales_product" type="fk" pk-ref="3" fk-ref="8"/>
+		<relation name="fk_fact_purchase_supplier" fq-name="public.fact_purchase.fk_fact_purchase_supplier" type="fk" pk-ref="4" fk-ref="6"/>
+		<relation name="fk_fact_receipt_purchase_order" fq-name="public.fact_receipt.fk_fact_receipt_purchase_order" type="fk" pk-ref="6" fk-ref="7"/>
+	</relations>
+</diagram>
